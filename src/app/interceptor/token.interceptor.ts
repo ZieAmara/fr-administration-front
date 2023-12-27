@@ -18,39 +18,34 @@ import { Router } from '@angular/router';
 export class TokenHttpInterceptor implements HttpInterceptor {
 
     constructor(
-        private service: TokenStorageService,
-        private router: Router
+        private readonly tokenStorageService: TokenStorageService,
+        private readonly router: Router
     ) {}
 
 
     // C'est dans la fonction intercept qu'on implémente la logique
     intercept ( request: HttpRequest<any>, next: HttpHandler ): Observable<HttpEvent<any>> {
 
-        // On récupère le token depuis le TokenStorageService
-        const token = this.service.getToken();
+      const token = this.tokenStorageService.getToken();
 
-        // s'il n'est pas initialisé, on envoie la requête telle qu'elle est
-        if (!token) { 
-            return next.handle(request);
-        }
+      if (!token) { 
+        return next.handle(request);
+      }
 
-        // Si non, on va injecter le token dedans :
-        const updatedRequest = request.clone({
-          headers: request.headers.set('Authorization', `Bearer ${token}`),
-        });
-
-        // et envoyer la requête avec le token
-        return next.handle(updatedRequest).pipe(
-            tap ({ 
-                next: (event) => {},
-
-                error: (error) => {
-                    if (error instanceof HttpErrorResponse && error.status === 401) {
-                        // Redirection vers la page de connexion pour que l'utilisateur se reconnecte
-                        this.router.navigateByUrl('/login');
-                    }
-                } 
-            })
-        );
+      const updatedRequest = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      return next.handle(updatedRequest).pipe(
+        tap ({
+          error: (error) => {
+            if (error instanceof HttpErrorResponse && error.status === 401) {
+              this.router.navigateByUrl('/login');
+            }
+          } 
+        })
+      );
   }
 }

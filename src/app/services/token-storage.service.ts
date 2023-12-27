@@ -13,7 +13,9 @@ const IS_LOGGED = 'true';
 export class TokenStorageService {
 
     public clear(): void {
-        localStorage.clear();
+        if (this.isLocalStorageSupported()) {
+            localStorage.clear();
+        }
     }
 
 
@@ -27,13 +29,26 @@ export class TokenStorageService {
 
 
     public getToken(): string {
-        const token = localStorage.getItem(TOKEN_KEY);
-        return token === null ? '' : token;
+        if (this.isLocalStorageSupported()) {
+            const token = localStorage.getItem(TOKEN_KEY);
+            return token === null ? '' : token;
+        }
+
+        return '';
     }
 
 
     public isLogged(): boolean {
-        return (Boolean)(localStorage.getItem(IS_LOGGED_IN));
+        if (this.isLocalStorageSupported()) {
+            return Boolean(localStorage.getItem(IS_LOGGED_IN));
+        }
+
+        return false;
+    }
+
+
+    private isLocalStorageSupported(): boolean {
+        return typeof localStorage !== 'undefined';
     }
 
 }

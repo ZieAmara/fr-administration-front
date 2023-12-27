@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-//import { environment } from '../../environments/environment';
 import { Observable, lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
+// import { environment } from '../../environments/environment';
 
-const base_url: string = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiHelperService {
+
+  private readonly base_url: string = environment.api_url;
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +18,8 @@ export class ApiHelperService {
   public get({ endpoint, queryParams = {} }: {
     endpoint: string;
     queryParams?: any;
-  }): Promise<any> { // environment
+  }): Promise<any> { 
+    environment
     return this.request({ endpoint, method: 'GET', queryParams });
   }
 
@@ -56,7 +59,7 @@ export class ApiHelperService {
   }): Promise<any> {
 
     const methodWanted = method.toLowerCase();
-    const url = base_url + endpoint;
+    const url = this.base_url + endpoint;
     const requestOptions = { params: queryParams };
 
     console.log(method, url, JSON.stringify(requestOptions), JSON.stringify(data));
