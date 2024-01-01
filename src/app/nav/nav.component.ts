@@ -16,10 +16,26 @@ export class NavComponent {
     private readonly router: Router,
   ) { }
 
+
   logout(): void {
     console.log("click on logout !");
     this.tokenStorageService.clear();
     this.router.navigateByUrl('/login');
+  }
+
+
+  goToUsers() {
+    this.router.navigateByUrl('/users');
+  }
+
+
+  goToUserProfil() {
+    this.router.navigateByUrl('/users/profil');
+  }
+
+  
+  goToHome() {
+    this.router.navigateByUrl('/home');
   }
 
 
