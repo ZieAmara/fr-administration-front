@@ -9,128 +9,148 @@
 <div class="profile">
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
         <mat-tab label="Personal">
-            
             <fieldset>
                 <legend>Your Personnal Informations</legend>
-
-                <div class="update-button">
-                    @if (edited) {
-                        <button class="save-dtn" mat-raised-button style="background-color: rgba(42, 236, 90, 0.67)" (click)="savePersonalInformations()">Save</button>
-                        <button class="cancel-btn" mat-raised-button style="background-color: rgba(236, 42, 42, 0.67)" (click)="cancelToPersonalInformations()">Cancel</button>
-                    } @else {
-                        <button class="edit-btn" mat-raised-button (click)="editPersonalInformations()">Edit</button>
-                    }
-                </div>
-
-                <table *ngIf="!edited">
-                    <tr>
-                        <td>
-                            <label for="id"> Id : </label> {{user.id}}
-                        </td>
-                        <td>
-                            <label for="userName"> User Name : </label> {{user.userName}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="firstName"> Fisrt Name : </label> {{user.firstName}}
-                        </td>
-                        <td>
-                            <label for="email"> Mail : </label> {{user.mail}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="lastName"> Last Name : </label> {{user.lastName}}
-                        </td>
-                        <td>
-                            <label for="age"> Age : </label> {{user.age}}
-                        </td>
-                    </tr>
-                </table>
-                
-                <form *ngIf="edited" (ngSubmit)="savePersonalInformations()">
-                    <table>
-                        <tr>
-                            <td>
-                                <mat-form-field class="input-field">
-                                    <mat-label>First name</mat-label>
-                                    <input type="text" name="firstName" matInput [(ngModel)]="user.firstName" value="{{user.firstName}}">
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field class="input-field">
-                                    <mat-label>Last Name</mat-label>
-                                    <input type="text" name ="lastName" matInput [(ngModel)]="user.lastName" value="{{user.lastName}}">
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <mat-form-field class="input-field">
-                                    <mat-label>User Name</mat-label>
-                                    <input type="text" name ="userName" matInput [(ngModel)]="user.userName" value="{{user.userName}}">
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field class="input-field">
-                                    <mat-label>Email</mat-label>
-                                    <input type="email" name ="email" matInput [(ngModel)]="user.mail" value="{{user.mail}}">
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <mat-form-field class="input-field">
-                                    <mat-label>Age</mat-label>
-                                    <input type="number" min="0" name ="age" matInput [(ngModel)]="user.age" value="{{user.age}}">
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+                <ng-container *ngTemplateOutlet="onPersonal"></ng-container>
             </fieldset>
         </mat-tab>
 
         <mat-tab label="Roles">
             <fieldset>
                 <legend> Your Differents Roles in the Associations</legend>
-                <table class="mat-elevation-z8">
-                    <tr>
-                        <th scope="col" class="No"> No </th>
-                        <th scope="col" *ngFor="let header of roleDiplayedColumns"> {{header}} </th>
-                    </tr>
-
-                    @for (role of roles; track $index) {
-                        <tr class="role">
-                            <th scope="row"> {{$index+1}} </th>
-                            <td> {{role.name}} </td>
-                            <td> {{role.association}} </td>
-                        </tr>
-                    }
-                </table>
+                <ng-container *ngTemplateOutlet="onRoles"></ng-container>
             </fieldset>
         </mat-tab>
 
         <mat-tab label="Associations">
             <fieldset>
                 <legend> Your Different Associations </legend>
-                <table class="mat-elevation-z8">
-                    <tr>
-                        <th scope="col" class="No"> No </th>
-                        <th scope="col" *ngFor="let header of associationDisplayedColumns"> {{header}} </th>
-                    </tr>
-                
-                    @for (association of associations; track $index) {
-                        <tr class="association">
-                            <th scope="row"> {{$index+1}} </th>
-                            <td> {{association.name}} </td>
-                            <td> {{association.description}} </td>
-                        </tr>
-                    }
-                </table>
+                <ng-container *ngTemplateOutlet="onAssociations"></ng-container>
             </fieldset>
         </mat-tab>
     </mat-tab-group>
 </div>
+
+
+
+<ng-template #onPersonal>
+    <div class="update-button">
+        @if (edited) {
+            <button class="save-dtn" mat-raised-button style="background-color: rgba(42, 236, 90, 0.67)" (click)="savePersonalInformations()">Save</button>
+            <button class="cancel-btn" mat-raised-button style="background-color: rgba(236, 42, 42, 0.67)" (click)="cancelToPersonalInformations()">Cancel</button>
+        } @else {
+            <button class="edit-btn" mat-raised-button (click)="editPersonalInformations()">Edit</button>
+        }
+    </div>
+
+    <table *ngIf="!edited">
+        <tr>
+            <td>
+                <label for="id"> Id : </label> {{user.id}}
+            </td>
+            <td>
+                <label for="userName"> User Name : </label> {{user.userName}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="firstName"> Fisrt Name : </label> {{user.firstName}}
+            </td>
+            <td>
+                <label for="email"> Mail : </label> {{user.mail}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="lastName"> Last Name : </label> {{user.lastName}}
+            </td>
+            <td>
+                <label for="age"> Age : </label> {{user.age}}
+            </td>
+        </tr>
+    </table>
+    
+    <form *ngIf="edited" (ngSubmit)="savePersonalInformations()">
+        <table>
+            <tr>
+                <td>
+                    <mat-form-field class="input-field">
+                        <mat-label>First name</mat-label>
+                        <input type="text" name="firstName" matInput [(ngModel)]="user.firstName" value="{{user.firstName}}">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="input-field">
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" name ="lastName" matInput [(ngModel)]="user.lastName" value="{{user.lastName}}">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="input-field">
+                        <mat-label>User Name</mat-label>
+                        <input type="text" name ="userName" matInput [(ngModel)]="user.userName" value="{{user.userName}}">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="input-field">
+                        <mat-label>Email</mat-label>
+                        <input type="email" name ="email" matInput [(ngModel)]="user.mail" value="{{user.mail}}">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="input-field">
+                        <mat-label>Age</mat-label>
+                        <input type="number" min="0" name ="age" matInput [(ngModel)]="user.age" value="{{user.age}}">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+    </form>
+</ng-template>
+
+
+<ng-template #onRoles>
+    <table class="mat-elevation-z8">
+        <tr>
+            <th scope="col" class="No"> No </th>
+            <th scope="col" *ngFor="let header of roleDisplayedColumns"> {{header}} </th>
+        </tr>
+
+        @for (role of roles; track $index) {
+            <tr class="role">
+                <td> {{$index+1}} </td>
+                <td> {{role.name}} </td>
+                <td> {{role.association}} </td>
+            </tr>
+        }
+    </table>
+</ng-template>
+
+
+<ng-template #onAssociations>
+    <table mat-table [dataSource]="associations" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef> No </th>
+          <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let association"> {{association.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let association"> {{association.description}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="associationDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: associationDisplayedColumns;"></tr>
+    </table>
+</ng-template>
 

@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
+import { ApiHelperService } from '../../services/api-helper.service';
 
 @Component({
   selector: 'app-users-list',
@@ -10,22 +8,25 @@ import { environment } from '../../../environments/environment.development';
 })
 export class UsersListComponent {
 
-  private readonly api_url : string = environment.api_url;
-
   users = [];
-  userDisplayedColumns: string[] = ['id', 'lastName', 'firstName', 'userName', 'age'];;
+  userDisplayedColumns: string[] = ['id', 'lastName', 'firstName', 'age', 'userName', 'mail'];;
 
   constructor(
-    private http: HttpClient,
+    private readonly api_helper: ApiHelperService
   ) { }
 
 
   ngOnInit() {
-    const request: Observable<any> = this.http.get<any[]>(`${this.api_url}/user/all`, { observe : 'response' });
-    request.subscribe((response) => {
-      this.users = response.body;
-      console.log(response.body);
-    })
+    this.getUsersData();
+  }
+
+  getUsersData(): void {
+    this.api_helper.get({ 
+      endpoint: `/user/all` 
+    }).then((response) => {
+      this.users = response;
+      console.log(response);
+    });
   }
 
 }

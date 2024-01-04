@@ -1,0 +1,104 @@
+<app-nav></app-nav>
+
+
+<div class="page-title">
+    <h1>Associations Sheets</h1>
+</div>
+
+
+<p>Selecte an association to see its sheet</p>
+
+<mat-form-field>
+    <mat-label>Association Name</mat-label>
+    <mat-select [(ngModel)]="associationSelected" (selectionChange)="onChangeAssociationSelected()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let association of associations" [value]="association">{{ association.name }}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+
+<div class="associations">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Associations Informations">
+            <ng-container *ngIf="associationSelected; else onSelected"></ng-container>
+            <fieldset>
+                <legend>Association's Informations</legend>
+                <ng-container *ngIf="!associationSelected; else AssociationSelectedInfo"></ng-container>
+            </fieldset>
+            <fieldset>
+                <legend>Members</legend>
+                <ng-container *ngIf="!associationSelected; else AssociationSelectedMembers"></ng-container>
+            </fieldset>
+            <fieldset>
+                <legend>Roles</legend>
+                <ng-container *ngIf="!associationSelected; else AssociationSelectedRoles"></ng-container>
+            </fieldset>
+            <fieldset>
+                <legend>Minutes</legend>
+                <ng-container *ngIf="!associationSelected; else AssociationSelectedMinutes"></ng-container>
+            </fieldset>
+        </mat-tab>
+
+        <mat-tab label="Create a new association">
+            <fieldset>
+                <legend>Create a new association</legend>
+            </fieldset>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+<ng-template #onSelected>
+    <p>Please select an Association</p>
+</ng-template>
+
+<ng-template #AssociationSelectedInfo>
+    <tr>
+        <th> ID: </th>
+        <td> {{associationSelected.id}} </td>
+    </tr>
+    <tr>
+        <th> Name: </th>
+        <td> {{associationSelected.name}} </td>
+    </tr>
+    <tr>
+        <th> Description: </th>
+        <td> {{associationSelected.description}} </td>
+    </tr>
+</ng-template>
+
+<ng-template #AssociationSelectedMembers>
+    <table class="members-table">
+        <tr style="background-color: palegoldenrod;">
+            <th scope="col" class="No"> No </th>
+            <th scope="col" *ngFor="let header of memberDisplayedColumns"> {{header}} </th>
+        </tr>
+        
+        <tr *ngFor="let member of associationSelected.members; let i = index" class="role" >
+            <td> {{ i + 1 }} </td>
+            <td> {{member.firstName}} </td>
+            <td> {{member.lastName}} </td>
+            <td> {{member.userName}} </td>
+            <td> {{member.mail}} </td>
+            <td> {{member.age}} </td>
+        </tr>
+    </table>
+</ng-template>
+
+<ng-template #AssociationSelectedRoles>
+    <table class="roles-table">
+        <tr style="background-color: coral;">
+            <th scope="col" class="No"> No </th>
+            <th scope="col" *ngFor="let header of roleDisplayedColumns"> {{header}} </th>
+        </tr>
+        
+        <tr *ngFor="let role of associationSelected.roles; let i = index" class="role" >
+            <td> {{ i + 1 }} </td>
+            <td> {{role.name}} </td>
+            <td> {{role.user.userName}} </td>
+        </tr>
+    </table>
+</ng-template>
+
+<ng-template #AssociationSelectedMinutes>
+    Minutes
+</ng-template>

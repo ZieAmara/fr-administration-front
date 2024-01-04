@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrl: './nav.component.sass'
 })
 export class NavComponent {
-
   constructor(
     private readonly apiService: ApiHelperService,
     private readonly tokenStorageService: TokenStorageService,
@@ -28,9 +27,21 @@ export class NavComponent {
     this.router.navigateByUrl('/users');
   }
 
+  goToUsersSheets() {
+    this.router.navigateByUrl('/users/sheets');
+  }
+  
+
+  goToAssociations() {
+    this.router.navigateByUrl('/associations');
+  }
+
+  goToAssociationsSheets() {
+    this.router.navigateByUrl('/associations/sheets');
+  }
 
   goToUserProfil() {
-    this.router.navigateByUrl('/users/profil');
+    this.router.navigateByUrl('/user/profil');
   }
 
   

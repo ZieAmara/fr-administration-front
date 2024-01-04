@@ -1,7 +1,23 @@
 <div class="nav-bar">
-    <button mat-raised-button (click)="goToHome()">Home</button>
-    <button mat-raised-button (click)="goToUsers()">Users</button>
-    <button mat-raised-button (click)="goToUserProfil()">Profil</button>
-    <button mat-raised-button (click)="logout()">Logout</button>
+    <div class="left">
+        <button mat-button (click)="goToHome()">Home</button>
+
+        <button mat-button [matMenuTriggerFor]="Associations">Associations</button>
+        <mat-menu #Associations="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToAssociations()">Liste</button>
+          <button mat-menu-item (click)="goToAssociationsSheets()">Sheets</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="Users">Users</button>
+        <mat-menu #Users="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToUsers()">List</button>
+          <button mat-menu-item (click)="goToUsersSheets()">Sheets</button>
+        </mat-menu>
+    </div>
+
+    <div class="rigth">
+        <button mat-button (click)="goToUserProfil()">Profil</button>
+        <button mat-button (click)="logout()">Logout</button>
+    </div>
 </div>
   

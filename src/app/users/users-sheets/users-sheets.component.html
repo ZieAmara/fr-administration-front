@@ -1,0 +1,116 @@
+<app-nav></app-nav>
+
+
+<div class="page-title">
+    <h1>Users Sheets</h1>
+</div>
+
+
+<p>Selecte an association to see its sheet</p>
+
+<mat-form-field>
+    <mat-label>User's userName</mat-label>
+    <mat-select [(ngModel)]="userSelected" (selectionChange)="onChangeUserSelected()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let user of users" [value]="user">{{user.userName}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+
+<div class="associations">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="User's Informations">
+            <ng-container *ngIf="userSelected; else noSelected"></ng-container>
+            <fieldset>
+                <legend>Personal Info</legend>
+                <ng-container *ngIf="!userSelected; else UserSelectedInfo"></ng-container>
+            </fieldset>
+            <fieldset>
+                <legend>Associations</legend>
+                <ng-container *ngIf="!userSelected; else UserSelectedAssociations"></ng-container>
+            </fieldset>
+            <fieldset>
+                <legend>Roles</legend>
+                <ng-container *ngIf="!userSelected; else UserSelectedRoles"></ng-container>
+            </fieldset>
+        </mat-tab>
+
+        <mat-tab label="Create a new User">
+            <fieldset>
+                <legend>Create a new User</legend>
+            </fieldset>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+    
+
+<ng-template #noSelected>
+    <p>Please select an User</p>
+</ng-template>
+
+<ng-template #UserSelectedInfo>
+    <table>
+        <tr>
+            <td>
+                <label for="id"> Id : </label> {{userSelected.id}}
+            </td>
+            <td>
+                <label for="userName"> User Name : </label> {{userSelected.userName}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="firstName"> Fisrt Name : </label> {{userSelected.firstName}}
+            </td>
+            <td>
+                <label for="email"> Mail : </label> {{userSelected.mail}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="lastName"> Last Name : </label> {{userSelected.lastName}}
+            </td>
+            <td>
+                <label for="age"> Age : </label> {{userSelected.age}}
+            </td>
+        </tr>
+    </table>
+</ng-template>
+
+<ng-template #UserSelectedAssociations>
+    <table mat-table [dataSource]="associations" class="associations-table">
+
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef> No </th>
+          <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let association"> {{association.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let association"> {{association.description}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="associationDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: associationDisplayedColumns;"></tr>
+    </table>
+</ng-template>
+
+<ng-template #UserSelectedRoles>
+    <table class="roles-table">
+        <tr>
+            <th scope="col" class="No"> No </th>
+            <th scope="col" *ngFor="let header of roleDisplayedColumns"> {{header}} </th>
+        </tr>
+        
+        <tr *ngFor="let role of userSelected.roles; let i = index" class="role" >
+            <td> {{ i + 1 }} </td>
+            <td> {{role.name}} </td>
+            <td> {{role.idAssociation}} </td>
+        </tr>
+    </table>
+</ng-template>

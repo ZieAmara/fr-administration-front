@@ -17,19 +17,16 @@ import { ApiHelperService } from '../../services/api-helper.service';
 })
 export class ProfilComponent {
 
-  private readonly api_url : string = environment.api_url;
-
   dataSource! : any;
   user : User;
   roles : UserRole[];
   associations : Association[];
-  roleDiplayedColumns: string[] = ['Role name', 'Association concerned'];
-  associationDisplayedColumns: string[] = ['Name', 'Description'];
-  userDiplayedColumns: string[] = ['Id', 'Last Name', 'First Name', 'User Name', 'Mail', 'Age'];
+  roleDisplayedColumns: string[] = ['Role name', 'Association concerned'];
+  associationDisplayedColumns: string[] = ['No', 'Name', 'Description'];
+  userDisplayedColumns: string[] = ['Id', 'Last Name', 'First Name', 'User Name', 'Mail', 'Age'];
   edited : boolean = false;
   
   constructor(
-    private http: HttpClient,
     private readonly tokenStorageService: TokenStorageService,
     private readonly api_helper: ApiHelperService,
   ) {

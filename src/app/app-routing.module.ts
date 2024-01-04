@@ -5,13 +5,19 @@ import { UsersListComponent } from './users/users-list/users-list.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { ProfilComponent } from './users/profile/profil.component';
+import { AssociationsListComponent } from './associations/associations-list/associations-list.component';
+import { AssociationsSheetsComponent } from './associations/associations-sheets/associations-sheets.component';
+import { UsersSheetsComponent } from './users/users-sheets/users-sheets.component';
 
 
 const routes: Routes = [
-  { path: 'users/profil', component: ProfilComponent, canActivate: [authGuard] },
+  { path: 'associations/sheets', component: AssociationsSheetsComponent, canActivate: [authGuard] },
+  { path: 'associations', component: AssociationsListComponent, canActivate: [authGuard] },
+  { path: 'users/sheets', component: UsersSheetsComponent, canActivate: [authGuard] },
+  { path: 'user/profil', component: ProfilComponent, canActivate: [authGuard] },
   { path: 'users', component: UsersListComponent, canActivate: [authGuard] },
-  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [authGuard]  },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**', component: LoginComponent }
 ];
