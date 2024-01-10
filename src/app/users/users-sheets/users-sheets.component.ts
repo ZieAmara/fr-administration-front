@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../../interfaces/user';
 import { ApiHelperService } from '../../services/api-helper.service';
 import { Association } from '../../interfaces/association';
 @Component({
