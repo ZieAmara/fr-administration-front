@@ -8,11 +8,15 @@ import { ProfilComponent } from './users/profile/profil.component';
 import { AssociationsListComponent } from './associations/associations-list/associations-list.component';
 import { AssociationsSheetsComponent } from './associations/associations-sheets/associations-sheets.component';
 import { UsersSheetsComponent } from './users/users-sheets/users-sheets.component';
+import { UsersCreationComponent } from './users/users-creation/users-creation.component';
+import { AssociationsCreationComponent } from './associations/associations-creation/associations-creation.component';
 
 
 const routes: Routes = [
+  { path: 'associations/creation', component: AssociationsCreationComponent, canActivate: [authGuard] },
   { path: 'associations/sheets', component: AssociationsSheetsComponent, canActivate: [authGuard] },
   { path: 'associations', component: AssociationsListComponent, canActivate: [authGuard] },
+  { path: 'users/creation', component: UsersCreationComponent, canActivate: [authGuard] },
   { path: 'users/sheets', component: UsersSheetsComponent, canActivate: [authGuard] },
   { path: 'user/profil', component: ProfilComponent, canActivate: [authGuard] },
   { path: 'users', component: UsersListComponent, canActivate: [authGuard] },

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiHelperService } from '../services/api-helper.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class NavComponent {
   constructor(
-    private readonly apiService: ApiHelperService,
     private readonly tokenStorageService: TokenStorageService,
     private readonly router: Router,
   ) { }
@@ -30,6 +28,10 @@ export class NavComponent {
   goToUsersSheets() {
     this.router.navigateByUrl('/users/sheets');
   }
+
+  goToUsersCreation() {
+    this.router.navigateByUrl('/users/creation');
+  }
   
 
   goToAssociations() {
@@ -38,6 +40,10 @@ export class NavComponent {
 
   goToAssociationsSheets() {
     this.router.navigateByUrl('/associations/sheets');
+  }
+
+  goToAssociationsCreation() {
+    this.router.navigateByUrl('/associations/creation');
   }
 
   goToUserProfil() {

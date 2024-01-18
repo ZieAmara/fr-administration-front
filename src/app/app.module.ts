@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { ProfilComponent } from './users/profile/profil.component';
 import { AssociationsListComponent } from './associations/associations-list/associations-list.component';
 import { AssociationsSheetsComponent } from './associations/associations-sheets/associations-sheets.component';
 import { UsersSheetsComponent } from './users/users-sheets/users-sheets.component';
+import { UsersCreationComponent } from './users/users-creation/users-creation.component';
+import { AssociationsCreationComponent } from './associations/associations-creation/associations-creation.component';
 
 
 
@@ -41,6 +44,8 @@ import { UsersSheetsComponent } from './users/users-sheets/users-sheets.componen
     AssociationsListComponent,
     AssociationsSheetsComponent,
     UsersSheetsComponent,
+    UsersCreationComponent,
+    AssociationsCreationComponent,
   ],
 
   imports: [
@@ -59,6 +64,7 @@ import { UsersSheetsComponent } from './users/users-sheets/users-sheets.componen
     FormsModule,
     MatMenuModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 
   providers: [

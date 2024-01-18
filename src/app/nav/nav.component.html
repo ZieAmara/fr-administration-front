@@ -6,12 +6,14 @@
         <mat-menu #Associations="matMenu" xPosition="after">
           <button mat-menu-item (click)="goToAssociations()">Liste</button>
           <button mat-menu-item (click)="goToAssociationsSheets()">Sheets</button>
+          <button mat-menu-item (click)="goToAssociationsCreation()">Create New Association</button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="Users">Users</button>
         <mat-menu #Users="matMenu" xPosition="after">
           <button mat-menu-item (click)="goToUsers()">List</button>
           <button mat-menu-item (click)="goToUsersSheets()">Sheets</button>
+          <button mat-menu-item (click)="goToUsersCreation()">Create New User</button>
         </mat-menu>
     </div>
 

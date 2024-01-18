@@ -35,7 +35,7 @@ export class LoginComponent {
     }).then((response) => {
       this.tokenStorageService.save(response.access_token, username);
       if (this.tokenStorageService.isLogged()) {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/associations']);
       } else {
         this.untorized_message = 'The username or password is incorrect! Please try again with valid credentials.';
       }

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { TokenStorageService } from '../../services/token-storage.service';
 
 import { User } from '../../interfaces/user';

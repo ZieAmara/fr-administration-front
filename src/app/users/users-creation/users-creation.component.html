@@ -1,0 +1,64 @@
+<app-nav></app-nav>
+
+
+<div class="page-title">
+    <h1>Creation of a new User</h1>
+</div>
+
+<div class="create-user"></div>
+
+
+<div class="create-user">
+    <ng-container *ngTemplateOutlet="createUserTemplate"></ng-container>
+</div>
+
+
+<ng-template #createUserTemplate>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input type="text" name="firstName" matInput [(ngModel)]="userCreate.firstName">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" name="lastName" matInput [(ngModel)]="userCreate.lastName">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>User Name</mat-label>
+                        <input type="text" name="userName" matInput [(ngModel)]="userCreate.userName">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Age</mat-label>
+                        <input type="number" min="0" name="age" matInput [(ngModel)]="userCreate.age">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input type="email" name="mail" matInput [(ngModel)]="userCreate.mail">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input type="password" name="userPassword" matInput [(ngModel)]="userCreate.userPassword">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <button mat-raised-button (click)="createUser()"> Create </button>
+        </table>
+    </form>
+</ng-template>
