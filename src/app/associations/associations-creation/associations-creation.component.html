@@ -1,1 +1,65 @@
-<p>associations-creation works!</p>
+<app-nav></app-nav>
+
+
+<div class="page-title">
+    <h1>Creation of a new Association</h1>
+</div>
+
+
+<div class="create-association">
+    <ng-container *ngTemplateOutlet="createAssociationTemplate"></ng-container>
+</div>
+
+
+<ng-template #createAssociationTemplate>
+
+    <mat-label><h2> Obligatory </h2></mat-label>
+    <p>An Association must have at least one member. If some members of this future Association are not in the list, please go to create them before continue the creation</p>
+    
+    <mat-stepper orientation="vertical" #stepper>
+
+        <mat-step [stepControl]="infoFormGroup">
+            <form [formGroup]="infoFormGroup">
+            <ng-template matStepLabel>Fill Association Global Info</ng-template>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Association Name" formControlName="nameCtrl" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea rows="4" matInput placeholder="Describe your Association here" formControlName="descriptionCtrl" required></textarea>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="usersFormGroup">
+            <form [formGroup]="usersFormGroup">
+                <ng-template matStepLabel>Fill Association Members</ng-template>
+                <mat-form-field>
+                    <mat-label>User Ids</mat-label>
+                    <input matInput formControlName="usersCtrl" placeholder="Ex. 1, 2, 3" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="createAssociation()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>Your Association has been created.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+        
+    </mat-stepper>
+</ng-template>
+
+

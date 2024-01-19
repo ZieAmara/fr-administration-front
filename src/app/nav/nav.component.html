@@ -15,6 +15,11 @@
           <button mat-menu-item (click)="goToUsersSheets()">Sheets</button>
           <button mat-menu-item (click)="goToUsersCreation()">Create New User</button>
         </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="Messages">Messages</button>
+        <mat-menu #Messages="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToMessagesSendEmail()">Send Email</button>
+        </mat-menu>
     </div>
 
     <div class="rigth">

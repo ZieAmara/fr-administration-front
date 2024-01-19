@@ -9,10 +9,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { AssociationsSheetsComponent } from './associations/associations-sheets/
 import { UsersSheetsComponent } from './users/users-sheets/users-sheets.component';
 import { UsersCreationComponent } from './users/users-creation/users-creation.component';
 import { AssociationsCreationComponent } from './associations/associations-creation/associations-creation.component';
+import { SendMessageComponent } from './messages/send-message/send-message.component';
 
 
 
@@ -46,6 +48,7 @@ import { AssociationsCreationComponent } from './associations/associations-creat
     UsersSheetsComponent,
     UsersCreationComponent,
     AssociationsCreationComponent,
+    SendMessageComponent,
   ],
 
   imports: [
@@ -65,6 +68,8 @@ import { AssociationsCreationComponent } from './associations/associations-creat
     MatMenuModule,
     MatSelectModule,
     MatDialogModule,
+    MatStepperModule,
+    ReactiveFormsModule,
   ],
 
   providers: [

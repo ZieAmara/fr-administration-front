@@ -1,0 +1,38 @@
+<app-nav></app-nav>
+
+
+<div class="page-title">
+    <h1>Send an Email</h1>
+</div>
+
+
+<div class="send-email">
+    <ng-container *ngTemplateOutlet="sendEmailTemplate"></ng-container>
+</div>
+
+
+<ng-template #sendEmailTemplate>
+    <form>
+        <mat-form-field>
+            <mat-label>Your Email</mat-label>
+            <input matInput id="from" type="text" [(ngModel)]="messageToSend.mailExpeditor" placeholder="Ex: adresse@example.com">
+        </mat-form-field>
+      
+        <mat-form-field>
+            <mat-label>Destinataires Ids</mat-label>
+            <input matInput id="to" type="text" [(ngModel)]="this.listIds" placeholder="Ex: 1, 2, 3">
+        </mat-form-field>
+      
+        <mat-form-field>
+            <mat-label>Object</mat-label>
+            <input matInput id="object" type="text" [(ngModel)]="messageToSend.object" placeholder="Ex: Meeting">
+        </mat-form-field>
+      
+        <mat-form-field>
+            <mat-label>Message</mat-label>
+            <textarea rows="10" matInput id="message" type="text" [(ngModel)]="messageToSend.content" placeholder="Ex: Hello, We are going to meet tomorrow at 10:00"></textarea>
+        </mat-form-field>
+      
+        <button mat-raised-button (click)="sendEmail()">Send</button>
+      </form>
+</ng-template>

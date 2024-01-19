@@ -10,9 +10,11 @@ import { AssociationsSheetsComponent } from './associations/associations-sheets/
 import { UsersSheetsComponent } from './users/users-sheets/users-sheets.component';
 import { UsersCreationComponent } from './users/users-creation/users-creation.component';
 import { AssociationsCreationComponent } from './associations/associations-creation/associations-creation.component';
+import { SendMessageComponent } from './messages/send-message/send-message.component';
 
 
 const routes: Routes = [
+  { path: 'messages/send-email', component: SendMessageComponent, canActivate: [authGuard] },
   { path: 'associations/creation', component: AssociationsCreationComponent, canActivate: [authGuard] },
   { path: 'associations/sheets', component: AssociationsSheetsComponent, canActivate: [authGuard] },
   { path: 'associations', component: AssociationsListComponent, canActivate: [authGuard] },

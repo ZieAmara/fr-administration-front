@@ -21,6 +21,10 @@ export class NavComponent {
   }
 
 
+  goToMessagesSendEmail() {
+    this.router.navigateByUrl('/messages/send-email');
+  }
+
   goToUsers() {
     this.router.navigateByUrl('/users');
   }
