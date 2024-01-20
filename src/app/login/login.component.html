@@ -1,24 +1,19 @@
-<p>login works!</p>
-
-
 <div class="login-form">
 
-    <div class="input-field">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="user's name" />
-    </div>
-
-    <div class="input-field">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="user's password" />
-    </div>
-
-    <div class="actions">
-        <a><button (click)="login()">Login</button></a>
-    </div>
+    <form (submit)="$event.preventDefault()">
+        <mat-form-field>
+            <mat-label> Username </mat-label>
+            <input matInput id="username" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Password </mat-label>
+            <input matInput id="password" type="password">
+        </mat-form-field>
+        <button mat-raised-button (click)="login()"> Login </button>
+    </form>
 
     <div class="unautorized">
         <p>{{untorized_message}}</p>
     </div>
+
 </div>
-  

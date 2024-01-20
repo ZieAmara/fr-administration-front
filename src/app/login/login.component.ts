@@ -7,10 +7,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.sass'
+  styleUrl: './login.component.sass',
 })
 export class LoginComponent {
-  
   untorized_message: string = '';
   
   constructor(
@@ -18,6 +17,12 @@ export class LoginComponent {
     private readonly tokenStorageService: TokenStorageService,
     private readonly router: Router,
   ) {}
+
+  ngOnInit(): void {
+    if (this.tokenStorageService.isLogged()) {
+      this.tokenStorageService.clear();
+    }
+  }
 
 
   login(): void {
@@ -28,9 +33,9 @@ export class LoginComponent {
       endpoint: '/auth/login',
       data: { username, password }
     }).then((response) => {
-      this.tokenStorageService.save(response.access_token);
+      this.tokenStorageService.save(response.access_token, username);
       if (this.tokenStorageService.isLogged()) {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/associations']);
       } else {
         this.untorized_message = 'The username or password is incorrect! Please try again with valid credentials.';
       }

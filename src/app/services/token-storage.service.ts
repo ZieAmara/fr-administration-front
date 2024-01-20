@@ -19,11 +19,12 @@ export class TokenStorageService {
     }
 
 
-    public save(token: string): void {
+    public save(token: string, username: string): void {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USERNAME_KEY );
         localStorage.removeItem(IS_LOGGED_IN);
         localStorage.setItem(TOKEN_KEY, token);
+        localStorage.setItem(USERNAME_KEY, username);
         localStorage.setItem(IS_LOGGED_IN, IS_LOGGED);
     }
 
@@ -32,6 +33,16 @@ export class TokenStorageService {
         if (this.isLocalStorageSupported()) {
             const token = localStorage.getItem(TOKEN_KEY);
             return token === null ? '' : token;
+        }
+
+        return '';
+    }
+
+
+    public getUsername(): string {
+        if (this.isLocalStorageSupported()) {
+            const username = localStorage.getItem(USERNAME_KEY);
+            return username === null ? '' : username;
         }
 
         return '';

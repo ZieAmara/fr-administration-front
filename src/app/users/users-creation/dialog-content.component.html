@@ -1,0 +1,13 @@
+
+<div style="padding: 5px; width: 100%;">
+    <h1 mat-dialog-title>User Creation Result</h1>
+    <div mat-dialog-content>
+        @if (data.value === '') {
+            <p>User creation failed 😓</p>
+            <p style="color: crimson;">Assurance that the userName or mail are not used by another user or all the fields are filled</p>
+        } @else {
+            <p>User created successfully 🥳</p>
+            <p>Username: {{data.value}}</p>
+        }
+    </div>
+</div>

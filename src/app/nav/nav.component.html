@@ -1,5 +1,30 @@
-<p>nav works!</p>
-<div>
-    <button (click)="logout()">Logout</button>
+<div class="nav-bar">
+    <div class="left">
+        <button mat-button (click)="goToHome()">Home</button>
+
+        <button mat-button [matMenuTriggerFor]="Associations">Associations</button>
+        <mat-menu #Associations="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToAssociations()">Liste</button>
+          <button mat-menu-item (click)="goToAssociationsSheets()">Sheets</button>
+          <button mat-menu-item (click)="goToAssociationsCreation()">Create New Association</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="Users">Users</button>
+        <mat-menu #Users="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToUsers()">List</button>
+          <button mat-menu-item (click)="goToUsersSheets()">Sheets</button>
+          <button mat-menu-item (click)="goToUsersCreation()">Create New User</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="Messages">Messages</button>
+        <mat-menu #Messages="matMenu" xPosition="after">
+          <button mat-menu-item (click)="goToMessagesSendEmail()">Send Email</button>
+        </mat-menu>
+    </div>
+
+    <div class="rigth">
+        <button mat-button (click)="goToUserProfil()">Profil</button>
+        <button mat-button (click)="logout()">Logout</button>
+    </div>
 </div>
   
